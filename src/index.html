@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+   <script>
+		// pull a parameter off url
+		function GetURLParameter(paramName){
+			var fs = window.location.search.substring(1).split('&');
+			for (var i = 0; i < fs.length; i++) {
+				var f = fs[i].split('=',2);
+				if (f[0] == paramName){
+				    return f[1];
+				}
+			}
+		}
+		utterance = new SpeechSynthesisUtterance(GetURLParameter('say').split('+').join(' '));
+		speechSynthesis.speak(utterance);
+    </script>
+  </body>
+</html>
