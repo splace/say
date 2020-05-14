@@ -9,28 +9,25 @@
 			switch (f[0]){
 				case 'say':
 				case 'text':
-				case 't':
-			   	utterance.text = f[1].split('+').join(' ');
+				utterance.text = f[1].split('+').join(' ');
 				break;
 				case 'rate':
-				case 'r':
+				case 's':
 				utterance.rate = f[1];
 				break;
 				case 'lang':
-				case 'l':
 				utterance.lang = f[1];
 				break;
 				case 'pitch':
-				case 'p':
+				case 'f':
 				utterance.pitch = f[1];
 				break;
 				case 'volume':
-				case 'v':
 				utterance.volume = f[1];
 				break;
 				case 'voice':
-				case 'c':
-				utterance.voice = f[1];
+				case 'how':
+				utterance.voice = window.speechSynthesis.getVoices().find(v => v.name.split(' ').find(w => w.startsWith(f[1])));
 				break;
 				}
 			}
