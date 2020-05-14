@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <body>
-   <script>
-		// pull a parameter off url
-		function GetURLParameter(paramName){
-			var fs = window.location.search.substring(1).split('&');
-			for (var i = 0; i < fs.length; i++) {
-				var f = fs[i].split('=',2);
-				if (f[0] == paramName){
-				    return f[1];
+   <script  type="text/javascript">
+		var fs = window.location.search.substring(1).split('&');
+		var utterance = new SpeechSynthesisUtterance();
+		for (var i = 0; i < fs.length; i++) {
+			var f = fs[i].split('=',2);
+			switch (f[0]){
+				case 'say':
+				case 'text':
+				case 't':
+			   	utterance.text = f[1].split('+').join(' ');
+				break;
+				case 'rate':
+				case 'r':
+				utterance.rate = f[1];
+				break;
+				case 'lang':
+				case 'l':
+				utterance.lang = f[1];
+				break;
+				case 'pitch':
+				case 'p':
+				utterance.pitch = f[1];
+				break;
+				case 'volume':
+				case 'v':
+				utterance.volume = f[1];
+				break;
+				case 'voice':
+				case 'c':
+				utterance.voice = f[1];
+				break;
 				}
 			}
-		}
-		utterance = new SpeechSynthesisUtterance(GetURLParameter('say').split('+').join(' '));
-		speechSynthesis.speak(utterance);
+	  	speechSynthesis.speak(utterance);
     </script>
   </body>
 </html>
