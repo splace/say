@@ -28,6 +28,9 @@
 				case 'voice':
 				case 'how':
 				utterance.voice = window.speechSynthesis.getVoices().find(v => v.name.split(' ').find(w => w.startsWith(f[1])));
+				if (utterance.voice==null){
+					console.log('Voice search for "'+f[1]+'"* was unsuccessful.')		
+				}
 				break;
 				}
 			}
